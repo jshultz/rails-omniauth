@@ -11,10 +11,6 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery_ujs
-//= require bootstrap
-//= require jquery.ui.datepicker
-//= require jquery.ui.sortable
 //= require angular/lib/angular.min
 //= require angular/lib/angular-resource.min
 //= require angular/lib/angular-route.min
