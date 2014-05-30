@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('realEstateApp').controller('AdminController', ['$scope', '$routeParams', '$location', function($scope, $routeParams, $location) {
+angular.module('realEstateApp').controller('AdminController', ['$scope', '$routeParams', '$location', 'Users', 'UserProperties', function($scope, $routeParams, $location, Users, UserProperties) {
 
     $scope.init = function() {
         $scope.result = 'hey there'
@@ -17,6 +17,32 @@ angular.module('realEstateApp').controller('AdminController', ['$scope', '$route
             return ""
         }
     }
+
+    $scope.create = function() {
+        var property = new UserProperties({
+            businessName: this.businessName,
+            streetAddress: this.streetAddress,
+            city: this.city,
+            state: this.state,
+            zip: this.zip,
+            mdu: this.mdu,
+            units: this.units,
+            content: this.content
+        });
+        property.$save(function(response) {
+            $location.path('users/properties/' + response._id);
+        });
+
+        this.businessName = '';
+        this.streetAddress = '';
+        this.city = '';
+        this.state = '';
+        this.zip = '';
+        this.mdu = '';
+        this.units = '';
+        this.content = '';
+        this.userID = '';
+    };
 
 }])
 
