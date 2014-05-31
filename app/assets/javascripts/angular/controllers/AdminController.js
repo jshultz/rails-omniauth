@@ -1,6 +1,8 @@
 'use strict';
 
-angular.module('realEstateApp').controller('AdminController', ['$scope', '$routeParams', '$location', 'Users', 'UserProperties', function($scope, $routeParams, $location, Users, UserProperties) {
+angular.module('realEstateApp').controller('AdminController', ['$scope', '$routeParams', '$location', 'userProperties', function($scope, $routeParams, $location, userProperties) {
+
+    $scope.properties = userProperties.all();
 
     $scope.init = function() {
         $scope.result = 'hey there'
@@ -16,10 +18,10 @@ angular.module('realEstateApp').controller('AdminController', ['$scope', '$route
         } else {
             return ""
         }
-    }
+    };
 
     $scope.create = function() {
-        var property = new UserProperties({
+        var property = {
             businessName: this.businessName,
             streetAddress: this.streetAddress,
             city: this.city,
@@ -28,10 +30,17 @@ angular.module('realEstateApp').controller('AdminController', ['$scope', '$route
             mdu: this.mdu,
             units: this.units,
             content: this.content
-        });
-        property.$save(function(response) {
-            $location.path('users/properties/' + response._id);
-        });
+        };
+
+        userProperties.insertProperty(property)
+            .success(function () {
+                $scope.status = 'Inserted Customer! Refreshing customer list.';
+                $scope.customers.push(cust);
+            }).
+            error(function(error) {
+                $scope.status = 'Unable to insert customer: ' + error.message;
+            })
+
 
         this.businessName = '';
         this.streetAddress = '';
