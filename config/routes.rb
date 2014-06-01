@@ -8,11 +8,15 @@ Rails.application.routes.draw do
 
 
   namespace :api, defaults: {format: :json} do
+
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: :true) do
+      devise_scope :user do
+        match '/sessions' => 'sessions#create', :via => :post
+        match '/sessions' => 'sessions#destroy', :via => :delete
+      end
+    end
     resources :properties, only: [:index, :create, :update, :destroy, :show] do
       resources :tickets, only: [:index, :create, :update, :destroy]
-    end
-    resources :task_lists, only: [:index, :create, :update, :destroy, :show] do
-      resources :tasks, only: [:index, :create, :update, :destroy]
     end
   end
 
