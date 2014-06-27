@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('realEstateApp').controller('AdminController', ['$scope', '$routeParams', '$location', 'userProperties', function($scope, $routeParams, $location, userProperties) {
+angular.module('realEstateApp').controller('AdminController', ['$scope', '$routeParams', '$location', 'userProperties','$http', function($scope, $routeParams, $location, userProperties, $http) {
 
     $scope.properties = userProperties.all();
 
@@ -21,7 +21,23 @@ angular.module('realEstateApp').controller('AdminController', ['$scope', '$route
     };
 
     $scope.create = function() {
-        var property = {
+        var theproperty = {
+              businessName: this.businessName,
+              streetAddress: this.streetAddress,
+              city: this.city,
+              state: this.state,
+              zip: this.zip,
+              mdu: this.mdu,
+              units: this.units,
+              content: this.content
+        };
+
+        // var propertywrap = {
+        //   property: theproperty
+        // }
+
+        var propertywrap = {
+          property : {
             businessName: this.businessName,
             streetAddress: this.streetAddress,
             city: this.city,
@@ -30,9 +46,18 @@ angular.module('realEstateApp').controller('AdminController', ['$scope', '$route
             mdu: this.mdu,
             units: this.units,
             content: this.content
-        };
+          }
+        }
 
-        userProperties.insertProperty(property)
+        // $http({
+        //   method: 'POST',
+        //   url: '/properties/create',
+        //   data: {
+        //     property : { businessName: this.businessName }
+        //   }
+        // })
+
+        userProperties.insertProperty(propertywrap)
             .success(function () {
                 $scope.status = 'Inserted Customer! Refreshing customer list.';
                 $scope.customers.push(cust);
@@ -54,4 +79,3 @@ angular.module('realEstateApp').controller('AdminController', ['$scope', '$route
     };
 
 }])
-

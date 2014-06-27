@@ -17,6 +17,7 @@ gem 'figaro'
 gem 'active_model_serializers'
 gem 'angular-rails-templates'
 group :development do
+  gem 'sqlite3'
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_21]
   gem 'quiet_assets'

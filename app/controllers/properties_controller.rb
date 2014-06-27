@@ -18,7 +18,8 @@ class PropertiesController < ApplicationController
   # POST /properties
   # POST /properties.json
   def create
-    @property = Property.new(safe_params)
+    @property = Property.new(params[:property])
+    # @property = Property.new(safe_params)
 
     if @property.save
       render json: @property, status: :created, location: @property
