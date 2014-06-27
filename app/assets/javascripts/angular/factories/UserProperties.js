@@ -4,7 +4,7 @@
 angular.module('realEstateApp')
     .factory('userProperties', ['$http', function($http) {
 
-        var urlBase = '/api/v1/users/properties';
+        var urlBase = '/properties';
         var userProperties = {};
 
         userProperties.all = function () {

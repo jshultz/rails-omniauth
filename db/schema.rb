@@ -11,8 +11,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140226220126) do
+ActiveRecord::Schema.define(version: 20140626214443) do
 
+  # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "identities", force: true do |t|
@@ -31,9 +32,15 @@ ActiveRecord::Schema.define(version: 20140226220126) do
     t.string   "city"
     t.string   "state"
     t.string   "zip"
+    t.boolean  "mdu"
+    t.decimal  "units"
+    t.text     "content"
+    t.integer  "users_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "properties", ["users_id"], name: "index_properties_on_users_id", using: :btree
 
   create_table "tasks", force: true do |t|
     t.string   "ticketName"
@@ -65,7 +72,6 @@ ActiveRecord::Schema.define(version: 20140226220126) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "authentication_token"
-    t.string   "name"
   end
 
 end
