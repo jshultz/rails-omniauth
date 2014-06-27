@@ -13,9 +13,6 @@
 
 ActiveRecord::Schema.define(version: 20140626214443) do
 
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
   create_table "identities", force: true do |t|
     t.integer  "user_id"
     t.string   "provider"
@@ -24,11 +21,11 @@ ActiveRecord::Schema.define(version: 20140626214443) do
     t.datetime "updated_at"
   end
 
-  add_index "identities", ["user_id"], name: "index_identities_on_user_id", using: :btree
+  add_index "identities", ["user_id"], name: "index_identities_on_user_id"
 
   create_table "properties", force: true do |t|
-    t.string   "businessName"
-    t.string   "streetAddress"
+    t.string   "business_name"
+    t.string   "street_address"
     t.string   "city"
     t.string   "state"
     t.string   "zip"
@@ -40,11 +37,11 @@ ActiveRecord::Schema.define(version: 20140626214443) do
     t.datetime "updated_at"
   end
 
-  add_index "properties", ["users_id"], name: "index_properties_on_users_id", using: :btree
+  add_index "properties", ["users_id"], name: "index_properties_on_users_id"
 
   create_table "tasks", force: true do |t|
-    t.string   "ticketName"
-    t.string   "ticketDescription"
+    t.string   "ticket_name"
+    t.string   "ticket_description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

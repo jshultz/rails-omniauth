@@ -22,8 +22,8 @@ angular.module('realEstateApp').controller('AdminController', ['$scope', '$route
 
     $scope.create = function() {
         var theproperty = {
-              businessName: this.businessName,
-              streetAddress: this.streetAddress,
+              business_name: this.businessName,
+              street_address: this.streetAddress,
               city: this.city,
               state: this.state,
               zip: this.zip,
@@ -38,8 +38,8 @@ angular.module('realEstateApp').controller('AdminController', ['$scope', '$route
 
         var propertywrap = {
           property : {
-            businessName: this.businessName,
-            streetAddress: this.streetAddress,
+            business_name: this.businessName,
+            street_address: this.streetAddress,
             city: this.city,
             state: this.state,
             zip: this.zip,
